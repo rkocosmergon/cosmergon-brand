@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cosmergon"
+version = "0.1.0"
+description = "Cosmergon in one name: installs the terminal dashboard of cosmergon-agent and the command cosmergon"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+    { name = "RKO Consult UG (haftungsbeschraenkt)", email = "contact@cosmergon.de" },
+]
+keywords = ["cosmergon", "ai-agent", "agent-economy", "terminal", "game-of-life"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Environment :: Console",
+]
+# No code of its own. Everything lives in cosmergon-agent; this package holds the name
+# and brings the dashboard extra, so that `pipx install cosmergon` gives a working program.
+dependencies = ["cosmergon-agent[dashboard]>=0.36.0"]
+
+[project.scripts]
+# The same command cosmergon-agent declares; repeated here so pipx and `uv tool` expose it
+# when this package is the one that was asked for.
+cosmergon = "cosmergon_agent.start:main"
+
+[project.urls]
+Homepage = "https://cosmergon.com"
+Source = "https://github.com/rkocosmergon/cosmergon-agent"
+
+[tool.setuptools]
+py-modules = []
